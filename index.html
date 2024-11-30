@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SustainAIble - Your Eco-Friendly AI Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>SustainAIble</h1>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#eco-score">Eco-Score</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#education">Learn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero">
+                <h2>Make Sustainable Choices with AI</h2>
+                <p>Get personalized eco-friendly recommendations and track your environmental impact</p>
+            </div>
+
+            <div class="input-form">
+                <h3>Tell us about your habits</h3>
+                <form id="habits-form">
+                    <div class="form-group">
+                        <label for="transportation">Daily Transportation:</label>
+                        <select id="transportation" required>
+                            <option value="">Select your primary mode</option>
+                            <option value="car">Car</option>
+                            <option value="public">Public Transport</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="walk">Walking</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diet">Dietary Habits:</label>
+                        <select id="diet" required>
+                            <option value="">Select your diet type</option>
+                            <option value="omnivore">Omnivore</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="pescatarian">Pescatarian</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="energy">Energy Usage:</label>
+                        <select id="energy" required>
+                            <option value="">Select your energy consumption</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Get Recommendations</button>
+                </form>
+            </div>
+
+            <div id="recommendations" class="recommendations hidden">
+                <h3>Your Sustainable Recommendations</h3>
+                <div class="loading hidden">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div id="recommendation-results"></div>
+            </div>
+        </section>
+
+        <section id="eco-score" class="hidden">
+            <h2>Your Eco-Score</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <span id="current-score">0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="score-progress"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges" class="section-padding">
+            <h2>Eco Challenges</h2>
+            <div class="challenges-grid" id="challenges-container">
+                <!-- Challenges will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <section id="education" class="section-padding">
+            <h2>Learn About Sustainability</h2>
+            <div class="education-grid">
+                <article class="education-card">
+                    <h3>Carbon Footprint Basics</h3>
+                    <p>Learn how your daily choices impact the environment and calculate your carbon footprint.</p>
+                    <button class="learn-more" onclick="toggleContent('carbon-content')">Read More</button>
+                    <div id="carbon-content" class="expanded-content hidden">
+                        <h4>Understanding Your Carbon Footprint</h4>
+                        <p>Your carbon footprint is the total amount of greenhouse gases produced by your daily activities. This includes:</p>
+                        <ul>
+                            <li>Transportation emissions from vehicles</li>
+                            <li>Energy consumption in your home</li>
+                            <li>Food choices and waste</li>
+                            <li>Consumer goods and services</li>
+                        </ul>
+                        <h4>How to Calculate Your Impact</h4>
+                        <p>To calculate your carbon footprint, consider these factors:</p>
+                        <ul>
+                            <li>Annual mileage and vehicle type</li>
+                            <li>Home energy usage and sources</li>
+                            <li>Diet and food waste habits</li>
+                            <li>Shopping and consumption patterns</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="education-card">
+                    <h3>Sustainable Living Tips</h3>
+                    <p>Practical tips and tricks for reducing waste and living more sustainably.</p>
+                    <button class="learn-more" onclick="toggleContent('tips-content')">Read More</button>
+                    <div id="tips-content" class="expanded-content hidden">
+                        <h4>Daily Sustainable Practices</h4>
+                        <ul>
+                            <li>Use reusable bags, water bottles, and containers</li>
+                            <li>Compost food waste and garden organics</li>
+                            <li>Choose energy-efficient appliances</li>
+                            <li>Reduce water consumption with efficient fixtures</li>
+                        </ul>
+                        <h4>Long-term Sustainability</h4>
+                        <ul>
+                            <li>Install solar panels or switch to renewable energy</li>
+                            <li>Create a home garden for fresh produce</li>
+                            <li>Practice minimalism and conscious consumption</li>
+                            <li>Support local and eco-friendly businesses</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="education-card">
+                    <h3>Renewable Energy Guide</h3>
+                    <p>Understanding renewable energy options and how to implement them in your life.</p>
+                    <button class="learn-more" onclick="toggleContent('energy-content')">Read More</button>
+                    <div id="energy-content" class="expanded-content hidden">
+                        <h4>Types of Renewable Energy</h4>
+                        <ul>
+                            <li>Solar Power: Direct conversion of sunlight to electricity</li>
+                            <li>Wind Energy: Harnessing wind power for clean energy</li>
+                            <li>Hydroelectric: Power generated from flowing water</li>
+                            <li>Geothermal: Earth's heat converted to power</li>
+                        </ul>
+                        <h4>Implementation Steps</h4>
+                        <p>How to transition to renewable energy:</p>
+                        <ul>
+                            <li>Assess your current energy usage</li>
+                            <li>Research available renewable options</li>
+                            <li>Contact local installers and providers</li>
+                            <li>Review government incentives and rebates</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SustainAIble. Making the world greener with AI.</p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
