@@ -1,6 +1,8 @@
 const STORAGE_KEYS = {
     ECO_SCORE: 'sustainAIble_eco_score',
-    USER_HABITS: 'sustainAIble_habits'
+    USER_HABITS: 'sustainAIble_habits',
+    COMPLETED_CHALLENGES: 'sustainAIble_completed_challenges',
+    ACTIVE_CHALLENGES: 'sustainAIble_active_challenges'
 };
 
 // Initialize the application when the DOM is loaded
@@ -271,7 +273,19 @@ async function loadChallenges() {
     try {
         const response = await fetch('data/challenges.json');
         const data = await response.json();
-        displayChallenges(data.challenges);
+        const allChallenges = data.challenges;
+        
+        // Get completed challenges from localStorage
+        const completedChallenges = JSON.parse(localStorage.getItem(STORAGE_KEYS.COMPLETED_CHALLENGES)) || [];
+        
+        // Get active challenges from localStorage or initialize with first 3
+        let activeChallenges = JSON.parse(localStorage.getItem(STORAGE_KEYS.ACTIVE_CHALLENGES));
+        if (!activeChallenges) {
+            activeChallenges = allChallenges.slice(0, 3);
+            localStorage.setItem(STORAGE_KEYS.ACTIVE_CHALLENGES, JSON.stringify(activeChallenges));
+        }
+        
+        displayChallenges(activeChallenges);
     } catch (error) {
         console.error('Error loading challenges:', error);
     }
@@ -293,7 +307,7 @@ function displayChallenges(challenges) {
                     ${challenge.tips.map(tip => `<li>${tip}</li>`).join('')}
                 </ul>
             </div>
-            <button class="complete-challenge" onclick="completeChallenge(${challenge.points})">
+            <button class="complete-challenge" onclick="completeChallenge(${challenge.points}, ${challenge.id})">
                 Complete Challenge
             </button>
         </div>
@@ -322,8 +336,29 @@ function toggleContent(contentId) {
     button.textContent = content.classList.contains('show') ? 'Read Less' : 'Read More';
 }
 
+// Get a new random challenge that hasn't been completed
+async function getNewChallenge(completedIds) {
+    const response = await fetch('data/challenges.json');
+    const data = await response.json();
+    const allChallenges = data.challenges;
+    
+    // Filter out completed challenges
+    const availableChallenges = allChallenges.filter(challenge => 
+        !completedIds.includes(challenge.id)
+    );
+    
+    if (availableChallenges.length === 0) {
+        // If all challenges are completed, reset the completed list
+        localStorage.setItem(STORAGE_KEYS.COMPLETED_CHALLENGES, '[]');
+        return allChallenges[Math.floor(Math.random() * allChallenges.length)];
+    }
+    
+    // Return a random challenge from available ones
+    return availableChallenges[Math.floor(Math.random() * availableChallenges.length)];
+}
+
 // Handle challenge completion
-function completeChallenge(points) {
+async function completeChallenge(points, challengeId) {
     // Get current score
     const currentScore = parseInt(localStorage.getItem(STORAGE_KEYS.ECO_SCORE)) || 0;
     
@@ -333,6 +368,27 @@ function completeChallenge(points) {
     // Update score display and storage
     updateEcoScore(newScore);
     localStorage.setItem(STORAGE_KEYS.ECO_SCORE, newScore.toString());
+    
+    // Update completed challenges
+    const completedChallenges = JSON.parse(localStorage.getItem(STORAGE_KEYS.COMPLETED_CHALLENGES)) || [];
+    completedChallenges.push(challengeId);
+    localStorage.setItem(STORAGE_KEYS.COMPLETED_CHALLENGES, JSON.stringify(completedChallenges));
+    
+    // Get active challenges
+    let activeChallenges = JSON.parse(localStorage.getItem(STORAGE_KEYS.ACTIVE_CHALLENGES));
+    
+    // Get a new challenge
+    const newChallenge = await getNewChallenge(completedChallenges);
+    
+    // Replace the completed challenge with the new one
+    const challengeIndex = activeChallenges.findIndex(c => c.id === challengeId);
+    if (challengeIndex !== -1) {
+        activeChallenges[challengeIndex] = newChallenge;
+        localStorage.setItem(STORAGE_KEYS.ACTIVE_CHALLENGES, JSON.stringify(activeChallenges));
+    }
+    
+    // Refresh the challenges display
+    displayChallenges(activeChallenges);
     
     // Show success message
     showSuccessMessage(points);
