@@ -1,40 +1,76 @@
 {
-    "challenges": [
-      {
-        "id": 1,
-        "title": "Zero Waste Week",
-        "description": "Avoid generating any disposable waste for a week",
-        "points": 100,
-        "difficulty": "Hard",
-        "tips": [
-          "Use reusable containers",
-          "Shop at bulk stores",
-          "Bring your own bags"
-        ]
-      },
-      {
-        "id": 2,
-        "title": "Plant-Based Days",
-        "description": "Eat only plant-based meals for 3 days",
-        "points": 50,
-        "difficulty": "Medium",
-        "tips": [
-          "Try meat alternatives",
-          "Explore new recipes",
-          "Stock up on legumes"
-        ]
-      },
-      {
-        "id": 3,
-        "title": "Energy Saver",
-        "description": "Reduce your energy consumption by 20% this week",
-        "points": 75,
-        "difficulty": "Medium",
-        "tips": [
-          "Use natural light",
-          "Unplug idle devices",
-          "Air-dry clothes"
-        ]
-      }
-    ]
-  } 
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Zero Waste Week",
+      "description": "Avoid generating any disposable waste for a week",
+      "points": 100,
+      "difficulty": "Hard",
+      "tips": [
+        "Use reusable containers",
+        "Shop at bulk stores",
+        "Bring your own bags"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Plant-Based Days",
+      "description": "Eat only plant-based meals for 3 days",
+      "points": 50,
+      "difficulty": "Medium",
+      "tips": [
+        "Try meat alternatives",
+        "Explore new recipes",
+        "Stock up on legumes"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Energy Saver",
+      "description": "Reduce your energy consumption by 20% this week",
+      "points": 75,
+      "difficulty": "Medium",
+      "tips": [
+        "Use natural light",
+        "Unplug idle devices",
+        "Air-dry clothes"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Local Food Champion",
+      "description": "Source all your food from local producers for a week",
+      "points": 80,
+      "difficulty": "Medium",
+      "tips": [
+        "Visit farmers markets",
+        "Join a local CSA",
+        "Research local producers"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Green Transport Month",
+      "description": "Use only eco-friendly transportation for 30 days",
+      "points": 150,
+      "difficulty": "Hard",
+      "tips": [
+        "Plan your routes ahead",
+        "Get a bike tune-up",
+        "Download transit apps"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Plastic-Free Shopping",
+      "description": "Complete your weekly shopping without any plastic packaging",
+      "points": 60,
+      "difficulty": "Medium",
+      "tips": [
+        "Bring cloth bags",
+        "Choose loose produce",
+        "Visit package-free stores"
+      ]
+    }
+  ]
+} 
