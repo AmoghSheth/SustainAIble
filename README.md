@@ -4,7 +4,7 @@ A lightweight web application that provides personalized eco-friendly recommenda
 
 ## Features
 
-- 🤖 AI-powered sustainability recommendations
+- 🤖 AI-powered sustainability recommendations and chatbot
 - 📊 Personal Eco-Score tracking
 - 🎯 Environmental challenges
 - 📚 Educational resources
