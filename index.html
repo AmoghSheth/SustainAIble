@@ -21,6 +21,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#eco-score">Eco-Score</a></li>
                 <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#ai-chat">AI Chat</a></li>
                 <li><a href="#education">Learn</a></li>
             </ul>
         </nav>
@@ -100,6 +101,28 @@
             </div>
         </section>
 
+        <section id="ai-chat" class="section-padding">
+            <h2>Eco AI Assistant</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Messages will appear here -->
+                </div>
+                <div class="chat-input">
+                    <form id="chat-form">
+                        <input 
+                            type="text" 
+                            id="user-message" 
+                            placeholder="Ask about sustainable living..."
+                            required
+                        >
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <section id="education" class="section-padding">
             <h2>Learn About Sustainability</h2>
             <div class="education-grid">
@@ -174,10 +197,11 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 SustainAIble. Making the world greener with AI.</p>
+        <p>&copy; 2025 SustainAIble. Making the world greener with AI.</p>
     </footer>
 
     <script src="config.js"></script>
     <script src="script.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html> 
